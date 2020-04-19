@@ -13,33 +13,76 @@ server.listen(port, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}/`);
 }); CODIGO PARA INICIAR EL SERVIDOR*/
 const SHA265 = require('crypto-js/sha256'); //Funcion de libreria para generar hash
-class Bloque{
-	constructor(index, fechaCreacion, datos, hashPrevio = ''){
-		this.index = index;
-		this.fechaCreacion = fechaCreacion;
-		this.datos = datos;
-		this.hashPrevio = hashPrevio;
-		this.hash = this.calcularHash();
-	}
-	calcularHash(){ //Calcula el hash segun los datos del bloque
-		return SHA265(this.index + this.hashPrevio + this.fechaCreacion + JSON.stringify(this.datos)).toString();
+
+class Transaccion{
+	constructor(origen,destino,cantidad){
+		this.origen = origen;
+		this.destino = destino;
+		this.cantidad = cantidad;
 	}
 }
+
+class Bloque{
+	constructor(index, fechaCreacion, transacciones, hashPrevio = ''){
+		this.index = index;
+		this.fechaCreacion = fechaCreacion;
+		this.transacciones = transacciones;
+		this.hashPrevio = hashPrevio;
+		this.hash = this.calcularHash();
+		this.nonce = 0;
+	}
+
+	calcularHash() { //Calcula el hash segun los datos del bloque
+		return SHA265(this.index + this.hashPrevio + this.fechaCreacion + JSON.stringify(this.transacciones) + this.nonce).toString();
+	}
+
+	minarBloque(restriccion) {
+		while(this.hash.substring(0,restriccion) !== Array(restriccion + 1).join("0")){
+			this.nonce++;
+			this.hash = this.calcularHash();
+		}
+		console.log("Bloque Minado: "+ this.hash);
+	}
+}
+
 class Blockchain{
 	constructor(){
 		this.cadena = [this.crearBloqueGenesis()];
+		this.restriccion = 4;
+		this.transaccionesPendientes = [];
+		this.recompensa = 100;
 	}
 	crearBloqueGenesis(){ // Se le dice bloque genesis al primer bloque de una cadena
-		return new Bloque(0,"02/10/2020","Bloque Genesis","0");
+		return new Bloque(0,Date.now(),"Bloque Genesis","0");
 	}
 	getUltimoBloque(){
 		return this.cadena[this.cadena.length -1];
 	}
-	agregarBloque(nuevoBloque){
-		nuevoBloque.hashPrevio = this.getUltimoBloque().hash;
-		nuevoBloque.hash = nuevoBloque.calcularHash();
-		this.cadena.push(nuevoBloque);
+	minarTransaccionesPendientes(recompensaDir){
+		let bloque = new Bloque(this.getUltimoBloque().index + 1,Date.now(),this.transaccionesPendientes,this.getUltimoBloque().hash);
+		bloque.minarBloque(this.restriccion);
+		console.log("========Bloque Minado=======");
+		this.cadena.push(bloque);
+		this.transaccionesPendientes = [
+			new Transaccion(null,recompensaDir, this.recompensa)
+		];
 	}
+
+	crearTransaccion(Transaccion){
+		this.transaccionesPendientes.push(Transaccion);
+	}
+
+	getDinero(direccion){
+		let dinero = 0;
+		for(let bloque of this.cadena){
+			for(let trans of bloque.transacciones){
+				if(trans.origen === direccion){dinero -= trans.cantidad;}
+				if(trans.destino === direccion){dinero += trans.cantidad;}
+			}
+		}
+		return dinero;
+	}
+
 	CadenaEsValida(){
 		for(let i = 1;i< this.cadena.length;i++){
 			let bloqueActual = this.cadena[i];
@@ -56,11 +99,11 @@ class Blockchain{
 	}
 }
 
-let ejemploCoin = new Blockchain();
-ejemploCoin.agregarBloque(new Bloque(1,"02/19/2020",{cantidad: 4}));
-ejemploCoin.agregarBloque(new Bloque(2,"04/19/2020",{cantidad: 10}));
-console.log("Es la Blockchain valida ? : " + ejemploCoin.CadenaEsValida());
-console.log(JSON.stringify(ejemploCoin,null,4));
-ejemploCoin.cadena[1].datos = {cantidad : 100};
-console.log(JSON.stringify(ejemploCoin,null,4));
-console.log("Es la Blockchain valida ? : " + ejemploCoin.CadenaEsValida());
+let digiCoin = new Blockchain();
+digiCoin.crearTransaccion(new Transaccion('direccion1','direccion2',50));
+digiCoin.crearTransaccion(new Transaccion('direccion3','direccion9',500));
+console.log("Minando.....");
+digiCoin.minarTransaccionesPendientes("direccionMinero");
+console.log("Balance de minero es: " + digiCoin.getDinero("direccionMinero"));
+digiCoin.minarTransaccionesPendientes("direccionMinero");
+console.log("Balance de minero es: " + digiCoin.getDinero("direccionMinero"));

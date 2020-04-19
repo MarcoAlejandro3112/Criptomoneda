@@ -17,5 +17,8 @@
     "url": "https://github.com/MarcoAlejandro3112/Criptomoneda/issues"
   },
   "homepage": "https://github.com/MarcoAlejandro3112/Criptomoneda#readme",
-  "keywords": []
+  "keywords": [],
+  "dependencies": {
+    "crypto-js": "^4.0.0"
+  }
 }

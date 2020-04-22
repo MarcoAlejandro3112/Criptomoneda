@@ -1,17 +1,27 @@
-/*const http = require('http');
 
+const http = require('http');
+const fs = require("fs");
 const hostname = '127.0.0.1';
 const port = 3000;
-
-const server = http.createServer((req, res) => {
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/plain');
-  res.end('Hola Mundo\n');
+const server = http.createServer((req, response) => {
+ response.writeHead(200, {
+        'Content-Type': 'text/html'
+    });
+    fs.readFile('./index.html', null, function (error, data) {
+        if (error) {
+            response.writeHead(404);
+            respone.write('Whoops! File not found!');
+        } else {
+            response.write(data);
+        }
+        response.end();
+    });
 });
 
 server.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
-}); CODIGO PARA INICIAR EL SERVIDOR*/
+	console.log(`Server running at http://${hostname}:${port}/`);
+}); 
+
 const { Blockchain, Transaccion} = require('./blockchain');
 const EC = require('elliptic').ec;
 const ec = new EC('secp256k1');

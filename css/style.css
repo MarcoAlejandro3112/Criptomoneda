@@ -4,6 +4,157 @@ html{
 *,*:after,*:before{
 	box-sizing: inherit;
 }
-nav{
-	background-color: #17202A;
-}
+	body {
+		background-color: #363534;
+		color:#fff;
+	}
+	.button{
+		padding: 0.7rem 1.2rem;
+		border-radius: 0.4rem;
+		background-color: #F39C12;
+		border:none;
+		font-family: "Oswald",sans-serif;
+		text-transform: uppercase;
+		color:#fff;
+	}
+	h3{
+		font-size: 1.2rem;
+	}
+	nav{
+		background-color: #0E0D0C;
+	}
+	nav div.container{
+		width: 100%;
+		padding: 1rem 2rem 1rem 1rem;
+	}
+	.navbar{
+		display: flex;
+		flex-flow: row;
+	}
+	.navbar div{
+		width: 50%;
+		display: flex;
+
+		align-items: center;
+	}
+	div.boxLogo img{
+		width: 6%;
+		margin-right:0.5rem;
+	}
+	.ulNav{
+		justify-content: flex-end;
+	}
+	.navbar h2:hover{
+		cursor: pointer;
+	}
+	.navbar h2{
+		color:#fff;
+		font-family: "Oswald",sans-serif;
+		font-size: 2rem;
+		text-transform: uppercase;
+	}
+	.navbar .ulNav li{
+		list-style:none;
+	}
+	.navbar .ulNav li a{
+		color:#fff;
+		border-radius: 0.4rem;
+		font-family: "Oswald",sans-serif;
+		text-transform: uppercase;
+		text-decoration: none;
+		background-color: #F39C12;
+		padding: 0.4rem 1rem;
+		font-size: 1.3rem;
+	}
+	main{
+		display: flex;
+		flex-flow: row;
+		
+	}
+	main aside {
+		width: 14%;
+		background-color:#1C1C1C;
+		height:89.5vh;
+	}
+	main aside div.user_profile{
+		display: flex;
+		flex-flow: column;
+		padding: 1rem 1rem 1.7rem 1rem;
+	}
+	main aside div.user_profile section{
+		display: flex;
+		justify-content: center;
+	}
+	main aside div.user_profile h3{
+		font-family: "Oswald",sans-serif;
+		text-transform: uppercase;
+	}
+	main aside section.imgUser img{
+		width: 100%;
+	}
+	main aside div.container ul.options li{
+		font-size: 1rem;
+		font-family: "Oswald",sans-serif;
+		text-transform: uppercase;
+		border-top: 1px solid #848484;
+		padding: 1rem 2rem;
+	}
+	section.infoUser {
+		display: flex;
+		flex-flow: column;
+		text-align:center;
+		line-height: 1.4rem;
+	}
+	section.infoUser p{
+		font-family: "Roboto",sans-serif;
+	}
+	main div.mainDiv{
+		padding:3rem 3rem 4rem 4rem;
+		width: 86%;
+	}
+	main div.mainDiv h3{
+		color:#fff;
+		font-family: "Oswald",sans-serif;
+		text-transform: uppercase;
+		font-size: 1.8rem;
+	}
+	.borderRL{
+		border-left:1px solid #fff;
+		border-right: 1px solid #fff;
+	}
+	main div.divTH {
+		padding: 2rem 0rem; 
+	}
+	main div.divTH ul{
+		display: flex;
+		flex-flow: row;
+	}
+	main div.divTH ul li{
+		padding: 1rem 0rem;
+		width: 20%;
+		text-align: center;
+		border-bottom: 1px solid #fff;
+		color:#fff;
+		font-family: "Oswald",sans-serif;
+		text-transform: uppercase;
+	}
+	main div.crearTransferencia form{
+		display: flex;
+		flex-flow: column;
+		padding: 2rem 0rem;
+	}
+	main div.crearTransferencia label {
+		font-family: "Roboto",sans-serif;
+		margin-bottom: 1rem;
+	}
+	main div.crearTransferencia form input{
+		padding: 0.5rem;
+		border-radius: 0.3rem;
+		border:1px solid #fff;
+	}
+	main div.crearTransferencia label,input {
+		margin-bottom: 1rem;
+	}
+	main div.crearTransferencia form input[type="number"]{
+		margin-bottom: 0rem;
+	}

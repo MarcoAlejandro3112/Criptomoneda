@@ -1,26 +1,20 @@
+const express = require('express');
+const path = require('path');
 
-const http = require('http');
-const fs = require("fs");
-const hostname = '127.0.0.1';
-const port = 3000;
-const server = http.createServer((req, response) => {
- response.writeHead(200, {
-        'Content-Type': 'text/html'
-    });
-    fs.readFile('./index.html', null, function (error, data) {
-        if (error) {
-            response.writeHead(404);
-            respone.write('Whoops! File not found!');
-        } else {
-            response.write(data);
-        }
-        response.end();
-    });
-});
+const app = express();
 
-server.listen(port, hostname, () => {
-	console.log(`Server running at http://${hostname}:${port}/`);
-}); 
+app.set('port', process.env.PORT || 4000);
+
+app.get('/', (req, res) => {
+    res.sendFile(path.resolve(__filename, '../views/index.html'))
+})
+app.set('view engine', 'html');
+app.use(require('./routes'))
+app.use('/bloque', require('./routes/bloque'));
+
+app.listen(app.get('port'), () => {
+    console.log('Server is in port', app.get('port'));
+  });
 
 const { Blockchain, Transaccion} = require('./blockchain');
 const EC = require('elliptic').ec;

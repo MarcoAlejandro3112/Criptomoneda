@@ -8,7 +8,9 @@ class Transaccion{
 		this.destino = destino;
 		this.cantidad = cantidad;
 	}
-
+	getOrigen(){
+		return this.origen;
+	}
 	calcularHash(){
 		return SHA265(this.origen + this.destino + this.cantidad).toString();
 	}
@@ -76,6 +78,9 @@ class Blockchain{
 	crearBloqueGenesis(){ // Se le dice bloque genesis al primer bloque de una cadena
 		return new Bloque(0,Date.now(),"Bloque Genesis","0");
 	}
+	getbloqueActual(){
+		return this.cadena[this.cadena.length - 2];
+	}
 	getUltimoBloque(){
 		return this.cadena[this.cadena.length -1];
 	}
@@ -101,7 +106,7 @@ class Blockchain{
 	}
 
 	getDinero(direccion){
-		let dinero = 0;
+		let dinero = 1000;
 		for(let bloque of this.cadena){
 			for(let trans of bloque.transacciones){
 				if(trans.origen === direccion){dinero -= trans.cantidad;}

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edege">
+	<title>DigiCoin</title>
+	<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Roboto&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/style.css">
+	<script src="datatravel.js"></script>
+</head>
+<body>
+	<nav>
+		<div class="container navbar">
+			<div class="boxLogo">
+				<img src="img/moneda.png"><h2>DigiCoin</h2>
+			</div>
+			<div class="ulNav">
+				<li><a href="http://localhost:4000/bloque/add" id="crearTransferencia">+ Transferencia</a></li>
+			</div>
+		</div>
+	</nav>
+	<main>
+		<aside>
+			<div class="user_profile">
+				<section class="imgUser">	
+				<img src="img/elliot.png" alt="">
+				</section>
+				<section class="infoUser">	
+				<h3>Elliot Alderson</h3>
+				<p>Cartera: 5000 Digi's</p>
+				</section>
+			</div>
+			<div class="container">
+				<ul class="options">	
+					<li>Bloques</li>
+					<li>Transferencias</li>
+					<li>Minar</li>
+					<li>Configuracion</li>
+					<li>Item#1</li>
+					<li>Item#2</li>
+					<li>Item#2</li>
+				</ul>
+			</div>
+		</aside>	
+
+		<div class="mainDiv">
+			<div class="bloques">
+				<h3>Bloques</h3>
+				<div class="divTH">
+					<ul>	
+						<li class="">#</li>
+						<li class="borderRL">Hash</li>
+						<li class="borderRL">Hash previo</li>
+						<li class="borderRL">Fecha</li>
+						<li class="">Minero</li>
+					</ul>
+					<ul>	
+						<li class="">1</li>
+						<li class="borderRL">#jdkaw12391ejemplo</li>
+						<li class="borderRL">#</li>
+						<li class="borderRL">4/21/2020</li>
+						<li class="">Pepe</li>
+					</ul>
+				</div>
+			</div>
+			<div class="crearTransferencia">	
+				<h3>Crear Transacción</h3>
+				<form id="form1" name="form1" action="#">
+					<label for="origen" >Origen</label>
+					<input id="origen" name="origen" type="text">
+					<label for="destino">Destino</label>
+					<input id="destino" name="destino" type="text">
+					<label for="cantidad">Cantidad</label>
+					<input  id="cantidad" name="cantidad" type="number">
+				</form>
+				<form>
+					<button onclick="recogerDatos(event)">Firma y Crear Transacción</button>
+				</form>
+				<script>
+					function recogerDatos(evt){
+    					evt.preventDefault();
+  
+						let origen =    document.getElementById("origen").value;
+						let destino =   document.getElementById("destino").value;
+						let cantidad =  document.getElementById("cantidad").value;
+
+						alert(origen + destino + cantidad)
+						}
+				</script>
+			</div>
+
+			<div class="transaccionesPendientes">
+				<h3>Transacciones Pendientes</h3>
+				<div class="divTH">
+					<ul>	
+						<li class="">#</li>
+						<li class="borderRL">Origen</li>
+						<li class="borderRL">Destino</li>
+						<li class="borderRL">Cantidad</li>
+						<li class="borderRL">Fecha</li>
+						<li class="">Aprobado</li>
+					</ul>
+					<ul>	
+						<li class="">1</li>
+						<li class="borderRL">#jdkaw12391ejemplo</li>
+						<li class="borderRL">miner</li>
+						<li class="borderRl">1000</li>
+						<li class="borderRL">4/21/2020</li>
+						<li class="">SI</li>
+					</ul>
+				</div>
+				<input type="button" value="Minar" src="../routes/bloque.js" onclick="javascript:sayhi()">
+			</div>
+		</div>
+	</main>
+</body>
+	<script></script>
+</html>

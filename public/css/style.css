@@ -7,7 +7,7 @@ html{
 	body {
 		background-color: #363534;
 		color:#fff;
-		overflow-y: hidden;
+
 	}
 	.button{
 		padding: 0.7rem 1.2rem;
@@ -127,7 +127,6 @@ html{
 	.borderRL{
 		border-left:1px solid #fff;
 		border-right: 1px solid #fff;
-		width: 30%;
 	}
 	main div.divTH {
 		padding: 2rem 0rem; 
@@ -136,13 +135,13 @@ html{
 		display: flex;
 		flex-flow: row;
 	}
-	main div.divTH ul li:first-child,main div.divTH ul li:last-child{
-		width: 5%;
-	}
+
 	main div.divTH ul li{
 		padding: 1rem 0rem;
+		font-size:0.8rem;
 		text-align: center;
 		border-bottom: 1px solid #fff;
+		width: 20%;
 		color:#fff;
 		font-family: "Oswald",sans-serif;
 		text-transform: uppercase;
@@ -161,9 +160,33 @@ html{
 		border-radius: 0.3rem;
 		border:1px solid #fff;
 	}
+	main div.crearTransferencia{
+		margin-top:1rem;
+		margin-bottom:4rem;
+	}
 	main div.crearTransferencia label,input {
 		margin-bottom: 1rem;
 	}
 	main div.crearTransferencia form input[type="number"]{
 		margin-bottom: 0rem;
 	}
+	div.transaccionesPendientes{
+		margin-top:4rem;
+	}
+	div.bloquePendiente h3{
+		margin:2rem 0rem;
+	}
+	div.bloquePendiente input {
+		margin-top:1.5rem;
+	}
+	div.transaccionesPendientes div.divTH{
+		padding: 0rem;
+	}
+	.hidden{
+		visibility: hidden;
+		margin:0rem;
+	}
+	.small{
+		width: 40%!important;
+	}
+

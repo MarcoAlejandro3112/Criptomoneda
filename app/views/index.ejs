@@ -38,9 +38,6 @@
 					<li>Transferencias</li>
 					<li>Minar</li>
 					<li>Configuracion</li>
-					<li>Item#1</li>
-					<li>Item#2</li>
-					<li>Item#2</li>
 				</ul>
 			</div>
 		</aside>	
@@ -51,16 +48,14 @@
 				<div class="divTH">
 					<ul>	
 						<li class="">#</li>
-						<li class="borderRL">Hash</li>
-						<li class="borderRL">Hash previo</li>
+						<li class="borderRL small">Hash</li>
 						<li class="borderRL">Fecha</li>
 						<li class="">Minero</li>
 					</ul>
 					<% for(let i = 0;i< bloque.length;i++){ %>
 					<ul>	
 						<li class=""><%=bloque[i].id%></li>
-						<li class="borderRL"><%=bloque[i].prevhash%></li>
-						<li class="borderRL"><%=bloque[i].acthash%></li>
+						<li class="borderRL small"><%=bloque[i].acthash%></li>
 						<li class="borderRL"><%=bloque[i].fechaCreacion.toDateString()%></li>
 						<li class=""><%=bloque[i].id_Minero%></li>
 					</ul>
@@ -70,26 +65,40 @@
 			
 
 			<div class="transaccionesPendientes">
-				<h3>Transacciones Pendientes</h3>
+				<h3>Bloques Pendientes por minar</h3>
+				<hr>	
 				<div class="divTH">
-					<ul>	
+					<form action="/minar" method="post">
+					<%for(let i = 0;i< bloqueF.length;i++) {%>
+					<input type="text" name="idBloque" class="hidden" value='<%=i+1%>'>
+					<div class="bloquePendiente">
+						<h3>Bloque <%=i+1%></h3>
+						<ul>	
 						<li class="">#</li>
-						<li class="borderRL">Origen</li>
+						<li class="borderRL small2">Origen</li>
 						<li class="borderRL">Destino</li>
 						<li class="borderRL">Cantidad</li>
 						<li class="borderRL">Fecha</li>
 						<li class="">Aprobado</li>
 					</ul>
+					<%for(let j = 0;j<= 10;j++){%>
+					<%if(trans[j] !== undefined){%>
 					<ul>	
-						<li class="">1</li>
-						<li class="borderRL">#jdkaw12391ejemplo</li>
-						<li class="borderRL">miner</li>
-						<li class="borderRl">1000</li>
+						<li class=""><%=trans[j].idTrans%></li>
+						<li class="borderRL small2">YO</li>
+						<li class="borderRL"><%=trans[j].destino%></li>
+						<li class="borderRl"><%=trans[j].cantidad%></li>
 						<li class="borderRL">4/21/2020</li>
 						<li class="">SI</li>
 					</ul>
+					<%}%>
+					<%}%>
+					
+					<input type="submit" class="button" value="Minar">
+					</form>
+					</div>
+					<%}%>
 				</div>
-
 			</div>
 		</div>
 	</main>

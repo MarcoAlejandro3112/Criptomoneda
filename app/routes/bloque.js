@@ -81,6 +81,17 @@ module.exports = app => {
         });
         
     });
+    app.get('/configuracion',(req,res) => {
+        res.render('configuracion',{
+            dificultad: digiCoin.retornarDificultad(),
+            dinero: cantidadDeDinero
+        });
+    });
+    app.post('/configuracion/change',(req,res) => {
+        const {nueva_dificultad} = req.body;
+        digiCoin.cambiarDificultad(nueva_dificultad);
+        res.redirect('/configuracion')
+    });
 }
 
 //console.log("Balance de minero es: " + digiCoin.getDinero(cartera));

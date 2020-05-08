@@ -132,6 +132,15 @@ class Blockchain{
 		}
 		return true;
 	}
+
+	cambiarDificultad(newDificultad){
+		this.restriccion = newDificultad;
+		return newDificultad;
+	}
+
+	retornarDificultad(){
+		return this.restriccion;
+	}
 }
 module.exports.Bloque = Bloque;
 module.exports.Blockchain = Blockchain;

@@ -35,23 +35,22 @@
 					<li><a href="/">Bloques</a></li>
 					<li>Transferencias</li>
 					<li>Minar</li>
-					<li><a href="configuracion" id="Cconfiguracion">Configuracion</a></li>
+					<li><a href="configuracion" id="_configuracion">Configuracion</a></li>
+
 				</ul>
 			</div>
 			</aside>		
 	<div class="mainDiv">	
-	<div class="crearTransferencia">	
-		<h3>Crear Transacción</h3>
-		<form action="crear_transferencia/add" method="post">
+	<div class="configuracion">	
+		<h3>Cambiar Configuracion</h3>	
+		<form action="configuracion/change" method="post">
 			<div class="lessButton">	
-				<label for="origen" >Origen</label>
-				<input id="origen" name="origen" type="text" value='<%=cartera%>' disabled>
-				<label for="destino">Destino</label>
-				<input id="destino" name="destino" type="text">
-				<label for="cantidad">Cantidad</label>
-				<input  id="cantidad" name="cantidad" type="number">
+				<label for="Dificultad Actual" >Dificultad</label>
+				<input id="Dificultad" name="Dificultad" type="text" value='<%=dificultad%>' disabled>
+				<label for="nueva_dificultad">Nueva Dificultad</label>
+				<input id="nueva_dificultad" name="nueva_dificultad" type="text">
 			</div>
-				<input type="submit" class="button" value="Firmar y Crear Transacción">
+				<input type="submit" class="button" value="Cambiar">
 		</form>
 	</div>
 	</div>
